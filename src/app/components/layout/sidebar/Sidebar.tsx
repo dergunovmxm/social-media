@@ -1,27 +1,31 @@
-import { MessageSquare, Phone, Settings, Sun, User2 } from "lucide-react";
+"use client";
+import cn from "clsx";
+import { Sun } from "lucide-react";
 import Image from "next/image";
 import styles from "./Sidebar.module.scss";
 import Link from "next/link";
+import { MENU } from "./sidebar.data";
+import { usePathname } from "next/navigation";
+
+const isLoggedIn = false;
 
 export function Sidebar() {
+  const pathname = usePathname();
   return (
     <aside className={styles.sidebar}>
-      <Image src="/logo.svg" alt="logo" width={40} height={40} />
+      <Image src="/logo.svg" priority alt="logo" width={40} height={40} />
       <div>
-        <Link href="/friends">
-          <User2 />
-        </Link>
-        <Link href="/calls">
-          <Phone />
-        </Link>
-        <Link href="/chats">
-          <MessageSquare />
-        </Link>
-        <Link href="/settings">
-          <Settings />
-        </Link>
+        {MENU.map((item) => (
+          <Link
+            href={item.url}
+            key={item.url}
+            className={cn({ [styles.active]: pathname === item.url })}
+          >
+            <item.icon size={27} />
+          </Link>
+        ))}
       </div>
-      <Sun />
+      <Sun size={27} />
     </aside>
   );
 }
