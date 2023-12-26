@@ -8,5 +8,5 @@ export interface IFieldProps {
   Icon?: LucideIcon;
 }
 
-export type TypeInputProps = InputHTMLAttributes<HTMLImageElement> &
+export type TypeInputProps = InputHTMLAttributes<HTMLInputElement> &
   IFieldProps;

@@ -1,20 +1,21 @@
 import cn from "clsx";
 import { Eye, EyeOff } from "lucide-react";
-import { HTMLInputTypeAttribute, forwardRef, useState } from "react";
+import { forwardRef, useState } from "react";
 import { TypeInputProps } from "./field.types";
-
+import styles from './Field.module.scss'
 const Field = forwardRef<HTMLInputElement, TypeInputProps>(
   ({ error, style, Icon, className, ...rest }, ref) => {
     return (
-      <div className={cn(styles.field, className)} style={style}>
+      <label className={cn(styles.field, className)} style={style}>
         {Icon && (
-          <div className={styles.fiels}>
-            <Icon />
+          <div className={styles.icon}>
+            <Icon /> 
           </div>
         )}
         <input ref={ref} {...rest} />
         {error && <div className={styles.error}>{error.message}</div>}
-      </div>
+      </label>
     );
-  })
-);
+  }
+)
+export default Field;

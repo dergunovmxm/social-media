@@ -11,6 +11,7 @@ const isLoggedIn = false;
 
 export function Sidebar() {
   const pathname = usePathname();
+  if(!isLoggedIn) return null; 
   return (
     <aside className={styles.sidebar}>
       <Image src="/logo.svg" priority alt="logo" width={40} height={40} />
